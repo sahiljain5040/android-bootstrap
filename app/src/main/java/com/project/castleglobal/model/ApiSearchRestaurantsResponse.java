@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ApiSearchRestaurantsResponse {
 
     private int resultsFound;
-    private ArrayList<Restaurant> restaurants;
+    private ArrayList<RestaurantWrapper> restaurants;
 
     public int getResultsFound() {
         return resultsFound;
@@ -19,11 +19,11 @@ public class ApiSearchRestaurantsResponse {
         this.resultsFound = resultsFound;
     }
 
-    public ArrayList<Restaurant> getRestaurants() {
+    public ArrayList<RestaurantWrapper> getRestaurants() {
         return restaurants;
     }
 
-    public void setRestaurants(ArrayList<Restaurant> restaurants) {
+    public void setRestaurants(ArrayList<RestaurantWrapper> restaurants) {
         this.restaurants = restaurants;
     }
 

@@ -33,8 +33,9 @@ public class SearchActivityPresenter {
     public void load() {
         mSearchService.getRestaurants(getQueryParams())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(apiSearchRestaurantsResponse -> {
-                    Log.d("Sahil", "Response: " + apiSearchRestaurantsResponse);
+                .map(restaurantsByCuisine -> mSearchService.getSearchResultList(restaurantsByCuisine))
+                .subscribe(searchResultsList -> {
+                    Log.d("Sahil", "searchResultsList: " + searchResultsList);
                 }, throwable -> {
                     throwable.printStackTrace();
                 });
