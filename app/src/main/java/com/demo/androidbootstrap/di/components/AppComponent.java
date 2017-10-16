@@ -2,6 +2,7 @@ package com.demo.androidbootstrap.di.components;
 
 import com.demo.androidbootstrap.di.modules.AppModule;
 import com.demo.androidbootstrap.di.modules.NetworkModule;
+import com.project.castleglobal.view.activity.SearchActivity;
 
 import javax.inject.Singleton;
 
@@ -14,4 +15,6 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, NetworkModule.class})
 public interface AppComponent {
+
+    void inject(SearchActivity searchActivity);
 }

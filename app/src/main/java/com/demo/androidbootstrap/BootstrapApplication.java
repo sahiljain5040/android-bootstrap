@@ -42,8 +42,8 @@ public class BootstrapApplication extends Application {
         return new AppModule(this);
     }
 
-    private NetworkModule getNetworkModule() {
-        NetworkModule networkModule = new NetworkModule("");
+    public NetworkModule getNetworkModule() {
+        NetworkModule networkModule = new NetworkModule("https://developers.zomato.com/");
         return networkModule;
     }
 }
