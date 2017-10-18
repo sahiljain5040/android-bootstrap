@@ -41,37 +41,11 @@
         android:paddingBottom="16dp"
         android:layout_marginTop="8dp"/>
 
-    <LinearLayout
-        android:id="@+id/loading_container"
+    <include layout="@layout/loading_results"/>
+
+    <include layout="@layout/no_results"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:clickable="true"
-        android:background="@color/lightGrey"
-        android:visibility="gone">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/no_results_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:clickable="true"
-        android:background="@android:color/white"
-        android:visibility="visible"
-        android:layout_below="@id/search_container">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No Results to display"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
+        android:layout_below="@id/search_container"/>
 
 </RelativeLayout>

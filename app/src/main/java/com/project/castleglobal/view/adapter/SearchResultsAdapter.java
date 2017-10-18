@@ -1,32 +1,27 @@
 package com.project.castleglobal.view.adapter;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.demo.androidbootstrap.R;
 import com.project.castleglobal.CastleGlobalApplication;
 import com.project.castleglobal.model.SearchResult;
+import com.project.castleglobal.view.viewholder.SearchResultViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Created by sahil on 10/18/17.
  */
 
-public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdapter.ViewHolder> {
+public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultViewHolder> {
 
     private static final int HEADER = 1;
     private static final int SEARCH_RESULT = 2;
@@ -36,38 +31,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
     @Inject
     public SearchResultsAdapter() {
 
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        @Nullable
-        @BindView(R.id.header_text)
-        TextView mHeader;
-
-        @Nullable
-        @BindView(R.id.image)
-        ImageView mImage;
-
-        @Nullable
-        @BindView(R.id.name)
-        TextView mName;
-
-        @Nullable
-        @BindView(R.id.rating)
-        TextView mRating;
-
-        @Nullable
-        @BindView(R.id.avg_cost)
-        TextView mAvgCost;
-
-        @Nullable
-        @BindView(R.id.cuisines)
-        TextView mCuisines;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
     }
 
     @Override
@@ -88,7 +51,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SearchResultViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = (LayoutInflater) parent.getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -103,11 +66,11 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                 view = layoutInflater.inflate(R.layout.activity_search_item, parent, false);
                 break;
         }
-        return new ViewHolder(view);
+        return new SearchResultViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(SearchResultViewHolder holder, int position) {
         SearchResult searchResult = mSearchResultsList.get(position);
         if (searchResult.isRestaurant()) {
             if (TextUtils.isEmpty(searchResult.getRestaurant().getThumb())) {
