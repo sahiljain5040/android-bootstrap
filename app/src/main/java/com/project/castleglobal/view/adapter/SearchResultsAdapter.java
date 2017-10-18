@@ -1,6 +1,7 @@
 package com.project.castleglobal.view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -82,6 +83,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultViewH
             holder.mName.setText(searchResult.getRestaurant().getName());
             holder.mAvgCost.setText("Avg cost for two: " + Integer.toString(searchResult.getRestaurant().getAverageCostForTwo()));
             holder.mRating.setText(searchResult.getRestaurant().getUserRating().getAggregateRating());
+            holder.mRating.setBackgroundColor(Color.parseColor("#" + searchResult.getRestaurant().getUserRating().getRatingColor()));
             holder.mCuisines.setText(searchResult.getRestaurant().getCuisines());
         } else {
             holder.mHeader.setText(searchResult.getName());
