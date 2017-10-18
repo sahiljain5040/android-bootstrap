@@ -17,10 +17,16 @@ public class BootstrapApplication extends Application {
     //Dependency Injection
     private static AppComponent sAppComponent;
     private static Object sObjectLock = new Object();
+    private static Context sContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        sContext = this;
+    }
+
+    public static Context getContext() {
+        return sContext;
     }
 
     public static AppComponent getAppComponent(Context context) {
