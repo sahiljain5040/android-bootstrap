@@ -26,7 +26,8 @@
             android:layout_marginRight="8dp"
             android:singleLine="true"
             android:maxLines="1"
-            android:imeOptions="actionSearch"/>
+            android:imeOptions="actionSearch"
+            android:hint="Search cuisine, dish, restaurant"/>
 
     </RelativeLayout>
 

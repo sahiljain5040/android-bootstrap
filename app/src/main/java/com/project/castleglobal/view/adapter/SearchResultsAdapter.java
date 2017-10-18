@@ -111,7 +111,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         SearchResult searchResult = mSearchResultsList.get(position);
         if (searchResult.isRestaurant()) {
             if (TextUtils.isEmpty(searchResult.getRestaurant().getThumb())) {
-                holder.mImage.setImageDrawable(null);
+                holder.mImage.setImageResource(R.drawable.not_available);
             } else {
                 Picasso.with(CastleGlobalApplication.getContext()).load(searchResult.getRestaurant()
                         .getThumb()).into(holder.mImage);
