@@ -1,4 +1,6 @@
-package com.project.castleglobal.model;
+package com.project.castleglobal.network.response;
+
+import com.project.castleglobal.entities.RestaurantWrapper;
 
 import java.util.ArrayList;
 

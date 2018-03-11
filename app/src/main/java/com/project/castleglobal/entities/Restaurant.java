@@ -1,4 +1,4 @@
-package com.project.castleglobal.model;
+package com.project.castleglobal.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;

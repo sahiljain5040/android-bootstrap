@@ -1,7 +1,8 @@
 package com.project.castleglobal.presenter;
 
-import com.project.castleglobal.service.SearchService;
-import com.project.castleglobal.view.delegate.SearchResultsDelegate;
+import com.project.castleglobal.contracts.SearchMVP;
+import com.project.castleglobal.model.SearchModel;
+import com.project.castleglobal.utils.SearchResultsHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,21 +16,23 @@ import rx.android.schedulers.AndroidSchedulers;
  * Created by sahil on 10/16/17.
  */
 
-public class SearchActivityPresenter {
+public class SearchActivityPresenter implements SearchMVP.Presenter{
 
-    private SearchResultsDelegate mView;
-    private SearchService mSearchService;
+    private SearchMVP.View mView;
+    private SearchMVP.Model mSearchModel;
     private Subscription mSubscription;
 
     @Inject
-    public SearchActivityPresenter(SearchService searchService) {
-        mSearchService = searchService;
+    public SearchActivityPresenter(SearchModel searchModel) {
+        mSearchModel = searchModel;
     }
 
-    public void setView(SearchResultsDelegate searchResultsDelegate) {
-        mView = searchResultsDelegate;
+    @Override
+    public void setView(SearchMVP.View view) {
+        this.mView = view;
     }
 
+    @Override
     public void load(String searchQuery) {
 
         if (mSubscription != null) {
@@ -42,9 +45,9 @@ public class SearchActivityPresenter {
             return;
         }
 
-        mSubscription = mSearchService.getRestaurants(getQueryParams(searchQuery))
+        mSubscription = mSearchModel.getRestaurants(getQueryParams(searchQuery))
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(restaurantsByCuisine -> mSearchService.getSearchResultList(restaurantsByCuisine))
+                .map(SearchResultsHelper::getSearchResultList)
                 .subscribe(searchResultsList -> {
                     if (mView != null) {
                         mView.onSearchResultsLoaded(searchResultsList);
@@ -63,6 +66,7 @@ public class SearchActivityPresenter {
         return queryParams;
     }
 
+    @Override
     public void onDestroy() {
         if (mSubscription != null) {
             mSubscription.unsubscribe();

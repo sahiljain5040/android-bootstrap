@@ -16,10 +16,9 @@ import android.widget.Toast;
 
 import com.demo.androidbootstrap.R;
 import com.project.castleglobal.CastleGlobalApplication;
-import com.project.castleglobal.model.SearchResult;
-import com.project.castleglobal.presenter.SearchActivityPresenter;
+import com.project.castleglobal.contracts.SearchMVP;
+import com.project.castleglobal.entities.SearchResult;
 import com.project.castleglobal.view.adapter.SearchResultsAdapter;
-import com.project.castleglobal.view.delegate.SearchResultsDelegate;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SearchActivity extends AppCompatActivity implements SearchResultsDelegate{
+public class SearchActivity extends AppCompatActivity implements SearchMVP.View{
 
     @BindView(R.id.search_results)
     RecyclerView mSearchResultsRecyclerView;
@@ -43,7 +42,7 @@ public class SearchActivity extends AppCompatActivity implements SearchResultsDe
     LinearLayout mNoResultsContainer;
 
     @Inject
-    SearchActivityPresenter mSearchActivityPresenter;
+    SearchMVP.Presenter mSearchActivityPresenter;
     @Inject
     SearchResultsAdapter mSearchResultsAdapter;
 

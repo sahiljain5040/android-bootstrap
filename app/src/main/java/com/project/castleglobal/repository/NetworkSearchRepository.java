@@ -1,10 +1,10 @@
-package com.project.castleglobal.service;
+package com.project.castleglobal.repository;
 
-
-import com.project.castleglobal.model.ApiSearchRestaurantsResponse;
-import com.project.castleglobal.model.Restaurant;
-import com.project.castleglobal.model.RestaurantWrapper;
-import com.project.castleglobal.model.SearchResult;
+import com.project.castleglobal.contracts.SearchRepository;
+import com.project.castleglobal.entities.Restaurant;
+import com.project.castleglobal.entities.RestaurantWrapper;
+import com.project.castleglobal.network.api.SearchApi;
+import com.project.castleglobal.network.response.ApiSearchRestaurantsResponse;
 import com.project.castleglobal.utils.Constants;
 
 import java.util.ArrayList;
@@ -12,25 +12,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import retrofit2.Retrofit;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by sahil on 10/14/17.
+ * Created by sahil on 3/10/18.
  */
-@Singleton
-public class SearchService {
+
+public class NetworkSearchRepository implements SearchRepository{
 
     private SearchApi mSearchApi;
 
     @Inject
-    public SearchService(Retrofit retrofit) {
+    public NetworkSearchRepository(Retrofit retrofit){
         mSearchApi = retrofit.create(SearchApi.class);
     }
 
+    @Override
     public Observable<HashMap<String, ArrayList<Restaurant>>> getRestaurants(Map<String, String> queryParams) {
         return mSearchApi.getRestaurants(Constants.API_KEY, queryParams)
                 .map(this::getRestaurantsByCuisineType)
@@ -59,24 +59,4 @@ public class SearchService {
         }
         return restaurantsByCuisine;
     }
-
-    public ArrayList<SearchResult> getSearchResultList(HashMap<String, ArrayList<Restaurant>> restaurantsByCuisines) {
-        ArrayList<SearchResult> searchResultsList = new ArrayList<>();
-        ArrayList<String> cuisinesList = new ArrayList<>(restaurantsByCuisines.keySet());
-        for (String cuisine : cuisinesList) {
-            SearchResult searchResult = new SearchResult();
-            searchResult.setRestaurant(false);
-            searchResult.setName(cuisine);
-            searchResultsList.add(searchResult);
-            ArrayList<Restaurant> restaurants = restaurantsByCuisines.get(cuisine);
-            for (Restaurant restaurant : restaurants) {
-                searchResult = new SearchResult();
-                searchResult.setRestaurant(true);
-                searchResult.setRestaurant(restaurant);
-                searchResultsList.add(searchResult);
-            }
-        }
-        return searchResultsList;
-    }
-
 }

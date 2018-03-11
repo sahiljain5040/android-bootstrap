@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.demo.androidbootstrap.R;
 import com.project.castleglobal.CastleGlobalApplication;
-import com.project.castleglobal.model.SearchResult;
+import com.project.castleglobal.entities.SearchResult;
 import com.project.castleglobal.view.viewholder.SearchResultViewHolder;
 import com.squareup.picasso.Picasso;
 

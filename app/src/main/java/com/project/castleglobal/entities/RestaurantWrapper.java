@@ -1,4 +1,4 @@
-package com.project.castleglobal.model;
+package com.project.castleglobal.entities;
 
 /**
  * Created by sahil on 10/17/17.

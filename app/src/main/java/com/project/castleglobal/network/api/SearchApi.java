@@ -1,7 +1,7 @@
-package com.project.castleglobal.service;
+package com.project.castleglobal.network.api;
 
-import com.project.castleglobal.model.ApiCuisinesResponse;
-import com.project.castleglobal.model.ApiSearchRestaurantsResponse;
+import com.project.castleglobal.network.response.ApiCuisinesResponse;
+import com.project.castleglobal.network.response.ApiSearchRestaurantsResponse;
 
 import java.util.Map;
 
