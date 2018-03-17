@@ -6,7 +6,9 @@ import com.castleglobal_clean.presentation.presenters.SearchPresenter;
 import com.castleglobal_clean.presentation.presenters.base.AbstractPresenter;
 import com.castleglobal_clean.utils.SearchResultsHelper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sahil on 3/17/18.
@@ -36,7 +38,7 @@ public class SearchPresenterImpl extends AbstractPresenter implements SearchPres
         }else{
             return;
         }
-
+        mRestaurantInteractor.setQueryParams(getQueryParams(queryString));
         mRestaurantInteractor.execute();
     }
 
@@ -72,5 +74,11 @@ public class SearchPresenterImpl extends AbstractPresenter implements SearchPres
         if (mView != null) {
             mView.onSearchResultsFailed();
         }
+    }
+
+    private Map<String, String> getQueryParams(String searchQuery) {
+        HashMap<String, String> queryParams = new HashMap<String, String>();
+        queryParams.put("q", searchQuery);
+        return queryParams;
     }
 }
