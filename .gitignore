@@ -33,3 +33,4 @@ gradle/wrapper/gradle-wrapper.properties
 
 App/src/main/java/pl/tablica2/config/DomainConfig.java
 /captures/*.li
+app/app.iml

@@ -2,7 +2,7 @@ package com.demo.androidbootstrap.di.components;
 
 import com.demo.androidbootstrap.di.modules.AppModule;
 import com.demo.androidbootstrap.di.modules.NetworkModule;
-import com.project.castleglobal.view.activity.SearchActivity;
+import com.castleglobal_clean.presentation.ui.activity.SearchActivity;
 
 import javax.inject.Singleton;
 
