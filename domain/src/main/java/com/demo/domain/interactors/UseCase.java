@@ -43,7 +43,7 @@ public abstract class UseCase<T, Params>{
     public void execute(UseCaseObserver<T> useCaseObserver, Params params) {
 
         this.buildUseCaseObservable(params)
-                .subscribeOn(Schedulers.from((java.util.concurrent.Executor) mThreadExecutor))
+                .subscribeOn(Schedulers.from(mThreadExecutor))
                 .observeOn(mPostExecutionThread.getScheduler())
                 .subscribe(useCaseObserver);
 

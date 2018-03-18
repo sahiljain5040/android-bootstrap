@@ -33,4 +33,9 @@ public class ThreadExecutor implements Executor {
                 TIME_UNIT,
                 WORK_QUEUE);
     }
+
+    @Override
+    public void execute(Runnable runnable) {
+        this.mThreadPoolExecutor.execute(runnable);
+    }
 }
