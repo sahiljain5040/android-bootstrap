@@ -1,4 +1,4 @@
-package com.castleglobal_clean.utils;
+package com.castleglobal_clean.domain.utils;
 
 import com.castleglobal_clean.domain.model.Restaurant;
 import com.castleglobal_clean.domain.model.RestaurantWrapper;

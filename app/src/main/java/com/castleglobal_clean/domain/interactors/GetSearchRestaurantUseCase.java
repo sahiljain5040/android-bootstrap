@@ -4,7 +4,7 @@ import com.castleglobal_clean.domain.executor.Executor;
 import com.castleglobal_clean.domain.executor.MainThread;
 import com.castleglobal_clean.domain.model.SearchResult;
 import com.castleglobal_clean.domain.repository.RestaurantRepository;
-import com.castleglobal_clean.utils.SearchResultsHelper;
+import com.castleglobal_clean.domain.utils.SearchResultsHelper;
 
 import java.util.List;
 import java.util.Map;

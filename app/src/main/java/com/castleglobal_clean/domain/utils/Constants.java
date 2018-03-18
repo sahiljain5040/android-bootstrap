@@ -1,4 +1,4 @@
-package com.castleglobal_clean.utils;
+package com.castleglobal_clean.domain.utils;
 
 /**
  * Created by sahil on 10/15/17.

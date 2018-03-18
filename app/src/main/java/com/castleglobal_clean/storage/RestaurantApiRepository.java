@@ -4,7 +4,7 @@ import com.castleglobal_clean.domain.model.RestaurantWrapper;
 import com.castleglobal_clean.domain.repository.RestaurantRepository;
 import com.castleglobal_clean.storage.network.api.SearchApi;
 import com.castleglobal_clean.storage.network.response.ApiSearchRestaurantsResponse;
-import com.castleglobal_clean.utils.Constants;
+import com.castleglobal_clean.domain.utils.Constants;
 
 import java.util.List;
 import java.util.Map;
