@@ -47,10 +47,5 @@ public abstract class BootstrapApplication extends Application {
         return new AppModule(this);
     }
 
-    /*public NetworkModule getNetworkModule() {
-        NetworkModule networkModule = new NetworkModule("https://developers.zomato.com/");
-        return networkModule;
-    }*/
-
     public abstract NetworkModule getNetworkModule();
 }
