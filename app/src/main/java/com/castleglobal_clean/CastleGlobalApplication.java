@@ -1,8 +1,8 @@
 package com.castleglobal_clean;
 
-import com.castleglobal_clean.domain.utils.Constants;
 import com.demo.androidbootstrap.BootstrapApplication;
 import com.demo.androidbootstrap.di.modules.NetworkModule;
+import com.demo.domain.utils.Constants;
 
 /**
  * Created by sahil on 3/17/18.
