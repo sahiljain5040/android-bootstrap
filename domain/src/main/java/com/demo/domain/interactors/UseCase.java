@@ -1,7 +1,7 @@
 package com.demo.domain.interactors;
 
 import com.demo.domain.executor.Executor;
-import com.demo.domain.executor.MainThread;
+import com.demo.domain.executor.PostExecutionThread;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
@@ -21,13 +21,13 @@ import io.reactivex.schedulers.Schedulers;
 public abstract class UseCase<T, Params>{
 
     protected Executor mThreadExecutor;
-    protected MainThread mMainThread;
+    protected PostExecutionThread mPostExecutionThread;
     private CompositeDisposable disposables;
     private boolean lastCompositeDisposed = true;
 
-    public UseCase(Executor threadExecutor, MainThread mainThread) {
+    public UseCase(Executor threadExecutor, PostExecutionThread postExecutionThread) {
         mThreadExecutor = threadExecutor;
-        mMainThread = mainThread;
+        mPostExecutionThread = postExecutionThread;
         this.disposables = new CompositeDisposable();
     }
 
@@ -44,7 +44,7 @@ public abstract class UseCase<T, Params>{
 
         this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from((java.util.concurrent.Executor) mThreadExecutor))
-                .observeOn(mMainThread.getScheduler())
+                .observeOn(mPostExecutionThread.getScheduler())
                 .subscribe(useCaseObserver);
 
         addDisposable(useCaseObserver);
