@@ -1,6 +1,5 @@
 package com.demo.base.di.components;
 
-
 import com.demo.base.di.modules.FragmentModule;
 import com.demo.base.di.scope.PerFragment;
 

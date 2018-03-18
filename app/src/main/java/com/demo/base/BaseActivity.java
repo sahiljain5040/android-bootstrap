@@ -24,7 +24,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * api.
  * - Handles signing out when an authentication error event is received.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity
+{
 
     private static final String KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID";
     private static final AtomicLong NEXT_ID = new AtomicLong(0);

@@ -1,5 +1,6 @@
 package com.demo.base.di.components;
 
+
 import com.demo.base.BaseActivity;
 import com.demo.base.di.modules.ActivityModule;
 import com.demo.base.di.scope.PerActivity;

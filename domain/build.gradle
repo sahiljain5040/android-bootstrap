@@ -2,8 +2,10 @@ apply plugin: 'java'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile "io.reactivex.rxjava2:rxjava:2.1.0"
-    compile "javax.inject:javax.inject:1"
-    compile 'com.google.code.gson:gson:2.8.1'
+
+    compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.reactiveJavaVersion}"
+    compile "javax.inject:javax.inject:${rootProject.ext.javaxInjectVersion}"
+    compile "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+
+    testCompile "junit:junit:${rootProject.ext.junitVersion}"
 }
