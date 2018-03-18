@@ -1,7 +1,7 @@
 package com.castleglobal_clean.domain.executor.impl;
 
 import com.castleglobal_clean.domain.executor.Executor;
-import com.castleglobal_clean.domain.interactors.base.AbstractInteractor;
+import com.castleglobal_clean.domain.interactors.UseCase;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -36,7 +36,7 @@ public class ThreadExecutor implements Executor {
     }
 
     @Override
-    public void execute(final AbstractInteractor interactor) {
+    public void execute(final UseCase interactor) {
         mThreadPoolExecutor.submit(new Runnable() {
             @Override
             public void run() {

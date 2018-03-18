@@ -1,10 +1,10 @@
 package com.castleglobal_clean.presentation.presenters.impl;
 
-import com.castleglobal_clean.domain.interactors.RestaurantInteractor;
-import com.castleglobal_clean.domain.model.RestaurantWrapper;
+import com.castleglobal_clean.domain.interactors.GetSearchRestaurantUseCase;
+import com.castleglobal_clean.domain.interactors.UseCaseObserver;
+import com.castleglobal_clean.domain.model.SearchResult;
 import com.castleglobal_clean.presentation.presenters.SearchPresenter;
 import com.castleglobal_clean.presentation.presenters.base.AbstractPresenter;
-import com.castleglobal_clean.utils.SearchResultsHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,15 +14,14 @@ import java.util.Map;
  * Created by sahil on 3/17/18.
  */
 
-public class SearchPresenterImpl extends AbstractPresenter implements SearchPresenter,
-        RestaurantInteractor.Callback{
+public class SearchPresenterImpl extends AbstractPresenter implements SearchPresenter{
 
-    private RestaurantInteractor mRestaurantInteractor;
+    private GetSearchRestaurantUseCase mSearchRestaurantUseCase;
     private SearchPresenter.View mView;
 
-    public SearchPresenterImpl(RestaurantInteractor restaurantInteractor) {
+    public SearchPresenterImpl(GetSearchRestaurantUseCase restaurantInteractor) {
         super();
-        this.mRestaurantInteractor = restaurantInteractor;
+        this.mSearchRestaurantUseCase = restaurantInteractor;
     }
 
     @Override
@@ -31,15 +30,34 @@ public class SearchPresenterImpl extends AbstractPresenter implements SearchPres
     }
 
     @Override
-    public void load(String queryString) {
+    public void load(String queryString) throws Exception {
 
         if(mView != null){
             mView.onSearchResultsLoading();
         }else{
-            return;
+            throw new Exception("setView() not called Before calling load()");
         }
-        mRestaurantInteractor.setQueryParams(getQueryParams(queryString));
-        mRestaurantInteractor.execute();
+
+        mSearchRestaurantUseCase.dispose();
+        mSearchRestaurantUseCase.execute(getSearchListObserver(), getQueryParams(queryString));
+    }
+
+    private UseCaseObserver<List<SearchResult>> getSearchListObserver(){
+
+        return new UseCaseObserver<List<SearchResult>>(){
+            @Override
+            public void onNext(List<SearchResult> searchResults) {
+                super.onNext(searchResults);
+                mView.onSearchResultsLoaded(searchResults);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                e.printStackTrace();
+                mView.onSearchResultsFailed();
+            }
+        };
     }
 
     @Override
@@ -59,21 +77,7 @@ public class SearchPresenterImpl extends AbstractPresenter implements SearchPres
     @Override
     public void destroy() {
         mView = null;
-    }
-
-    @Override
-    public void onRestaurantsRetrieved(List<RestaurantWrapper> restaurantList) {
-        if(mView != null){
-            mView.onSearchResultsLoaded(SearchResultsHelper.getSearchResultList
-                    (SearchResultsHelper.getRestaurantsByCuisineType(restaurantList)));
-        }
-    }
-
-    @Override
-    public void onRetrievalFailed() {
-        if (mView != null) {
-            mView.onSearchResultsFailed();
-        }
+        mSearchRestaurantUseCase.dispose();
     }
 
     private Map<String, String> getQueryParams(String searchQuery) {

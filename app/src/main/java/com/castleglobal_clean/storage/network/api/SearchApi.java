@@ -5,12 +5,12 @@ import com.castleglobal_clean.storage.network.response.ApiSearchRestaurantsRespo
 
 import java.util.Map;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
-import rx.Observable;
 
 /**
  * Created by sahil on 10/14/17.

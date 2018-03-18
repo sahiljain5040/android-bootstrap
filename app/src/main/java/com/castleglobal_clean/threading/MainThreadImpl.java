@@ -5,6 +5,9 @@ import android.os.Looper;
 
 import com.castleglobal_clean.domain.executor.MainThread;
 
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * This class makes sure that the runnable we provide will be run on the main UI thread.
  */
@@ -18,16 +21,16 @@ public class MainThreadImpl implements MainThread {
         mHandler = new Handler(Looper.getMainLooper());
     }
 
-    @Override
-    public void post(Runnable runnable) {
-        mHandler.post(runnable);
-    }
-
     public static MainThread getInstance() {
         if (sMainThread == null) {
             sMainThread = new MainThreadImpl();
         }
 
         return sMainThread;
+    }
+
+    @Override
+    public Scheduler getScheduler() {
+        return Schedulers.from(mHandler);
     }
 }

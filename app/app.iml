@@ -94,15 +94,15 @@
     <orderEntry type="library" exported="" name="com.android.support:support-fragment-25.0.0" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-core-ui-25.0.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="junit:junit:4.12@jar" level="project" />
+    <orderEntry type="library" exported="" name="io.reactivex.rxjava2:rxjava:2.1.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.retrofit2:retrofit:2.1.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.jakewharton:butterknife-annotations:8.2.1@jar" level="project" />
     <orderEntry type="library" exported="" name="com.google.dagger:dagger:2.5@jar" level="project" />
     <orderEntry type="library" exported="" name="javax.inject:javax.inject:1@jar" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="com.squareup:javawriter:2.1.1@jar" level="project" />
-    <orderEntry type="library" exported="" name="io.reactivex:rxandroid-1.2.1" level="project" />
+    <orderEntry type="library" exported="" name="io.reactivex:rxandroid-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.okio:okio:1.11.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-media-compat-25.0.0" level="project" />
-    <orderEntry type="library" exported="" name="io.reactivex:rxjava:1.2.0@jar" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="org.mockito:mockito-core:1.10.19@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support.constraint:constraint-layout-solver:1.0.2@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:animated-vector-drawable-25.0.0" level="project" />
@@ -127,10 +127,12 @@
     <orderEntry type="library" exported="" scope="TEST" name="com.android.support.test:runner-0.5" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.retrofit2:adapter-rxjava:2.0.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-compat-25.0.0" level="project" />
+    <orderEntry type="library" exported="" name="org.reactivestreams:reactive-streams:1.0.0@jar" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="com.android.support.test.espresso:espresso-idling-resource-2.2.2" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.picasso:picasso:2.5.2@jar" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="javax.annotation:javax.annotation-api:1.2@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:recyclerview-v7-25.0.0" level="project" />
+    <orderEntry type="library" exported="" name="io.reactivex:rxjava:1.1.1@jar" level="project" />
     <orderEntry type="library" exported="" name="com.jakewharton.rxbinding:rxbinding-0.4.0" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-vector-drawable-25.0.0" level="project" />
   </component>

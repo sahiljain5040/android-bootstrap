@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ApiSearchRestaurantsResponse {
 
     private int resultsFound;
-    private ArrayList<RestaurantWrapper> restaurants;
+    private ArrayList<RestaurantWrapper> restaurants = new ArrayList<RestaurantWrapper>();
 
     public int getResultsFound() {
         return resultsFound;

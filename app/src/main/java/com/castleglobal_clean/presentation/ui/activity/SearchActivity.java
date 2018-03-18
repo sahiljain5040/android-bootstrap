@@ -20,7 +20,7 @@ import com.castleglobal_clean.presentation.presenters.SearchPresenter;
 import com.castleglobal_clean.presentation.ui.adapter.SearchResultsAdapter;
 import com.demo.androidbootstrap.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -55,7 +55,11 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
         init();
 
         mSearchActivityPresenter.setView(this);
-        mSearchActivityPresenter.load("");
+        try {
+            mSearchActivityPresenter.load("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void init(){
@@ -80,7 +84,11 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
         if(TextUtils.isEmpty(mSearchEditText.getText().toString())){
             Toast.makeText(this, "Please enter some text", Toast.LENGTH_SHORT).show();
         }else{
-            mSearchActivityPresenter.load(mSearchEditText.getText().toString());
+            try {
+                mSearchActivityPresenter.load(mSearchEditText.getText().toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -96,7 +104,7 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
     }
 
     @Override
-    public void onSearchResultsLoaded(ArrayList<SearchResult> searchResults) {
+    public void onSearchResultsLoaded(List<SearchResult> searchResults) {
         mLoadingContainer.setVisibility(View.GONE);
         if(searchResults == null || searchResults.isEmpty()){
             mNoResultsContainer.setVisibility(View.VISIBLE);

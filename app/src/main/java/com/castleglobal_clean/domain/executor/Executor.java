@@ -1,6 +1,6 @@
 package com.castleglobal_clean.domain.executor;
 
-import com.castleglobal_clean.domain.interactors.base.AbstractInteractor;
+import com.castleglobal_clean.domain.interactors.UseCase;
 
 /**
  * This executor is responsible for running interactors on background threads.
@@ -14,5 +14,5 @@ public interface Executor {
      *
      * @param interactor The interactor to run.
      */
-    void execute(final AbstractInteractor interactor);
+    void execute(final UseCase interactor);
 }

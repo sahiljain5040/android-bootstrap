@@ -14,7 +14,7 @@ import com.castleglobal_clean.presentation.ui.viewholder.SearchResultViewHolder;
 import com.demo.androidbootstrap.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -27,7 +27,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultViewH
     private static final int HEADER = 1;
     private static final int SEARCH_RESULT = 2;
 
-    private ArrayList<SearchResult> mSearchResultsList;
+    private List<SearchResult> mSearchResultsList;
 
     @Inject
     public SearchResultsAdapter() {
@@ -90,11 +90,11 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultViewH
         }
     }
 
-    public ArrayList<SearchResult> getSearchResultsList() {
+    public List<SearchResult> getSearchResultsList() {
         return mSearchResultsList;
     }
 
-    public void setSearchResultsList(ArrayList<SearchResult> searchResultsList) {
+    public void setSearchResultsList(List<SearchResult> searchResultsList) {
         this.mSearchResultsList = searchResultsList;
         this.notifyDataSetChanged();
     }
