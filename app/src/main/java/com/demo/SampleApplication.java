@@ -8,7 +8,7 @@ import com.demo.domain.utils.Constants;
  * Created by sahil on 3/17/18.
  */
 
-public class CastleGlobalApplication extends BootstrapApplication {
+public class SampleApplication extends BootstrapApplication {
 
     @Override
     public void onCreate() {

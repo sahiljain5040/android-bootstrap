@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.demo.CastleGlobalApplication;
+import com.demo.SampleApplication;
 import com.demo.ui.viewholder.SearchResultViewHolder;
 import com.demo.androidbootstrap.R;
 import com.demo.domain.model.SearchResult;
@@ -77,7 +77,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultViewH
             if (TextUtils.isEmpty(searchResult.getRestaurant().getThumb())) {
                 holder.mImage.setImageResource(R.drawable.not_available);
             } else {
-                Picasso.with(CastleGlobalApplication.getContext()).load(searchResult.getRestaurant()
+                Picasso.with(SampleApplication.getContext()).load(searchResult.getRestaurant()
                         .getThumb()).into(holder.mImage);
             }
             holder.mName.setText(searchResult.getRestaurant().getName());
