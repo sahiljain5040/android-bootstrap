@@ -13,13 +13,13 @@ In this template I have used **Rxjava** along with  regular Java and **Dagger** 
 
 ## Clean Architecture
 
-![Alt text](https://res.cloudinary.com/practicaldev/image/fetch/s--c0f9PFvt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/http://wahibhaq.github.io/img/blog/posts/summary-thoughts-clean-architecture-mvp/clean-architecture-ring-diagram.png "Optional title")
+![Alt text](https://res.cloudinary.com/practicaldev/image/fetch/s--c0f9PFvt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/http://wahibhaq.github.io/img/blog/posts/summary-thoughts-clean-architecture-mvp/clean-architecture-ring-diagram.png)
 
 > In Clean Architecture, the code is separated into layers in an onion shape with one dependency rule: The inner layers should not know anything about the outer layers. Inner layers contain business logic, whereas the outer layers contain implementation and the middle layer contain Interface Adapters. Each ring represent one layer of abstraction
 
 ## Different layers, components and how they communicate with each other
 
-![Alt text](https://res.cloudinary.com/practicaldev/image/fetch/s--ahOh6vkO--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/http://wahibhaq.github.io/img/blog/posts/summary-thoughts-clean-architecture-mvp/srp-clean-architecture-diagram.png )
+![Alt text](https://res.cloudinary.com/practicaldev/image/fetch/s--ahOh6vkO--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/http://wahibhaq.github.io/img/blog/posts/summary-thoughts-clean-architecture-mvp/srp-clean-architecture-diagram.png)
 
 ## Structure
 The general structure for the android app looks like this:
@@ -46,7 +46,7 @@ public class LoginUseCase extends UseCase<User, Map<String, String>>{
     private LoginRepository mRepository;
 
     @Inject
-    public LoginUseCase(Executor threadExecutor, PostExecutionThread                      postExecutionThread,LoginRepository respository) {
+    public LoginUseCase(Executor threadExecutor, PostExecutionThread postExecutionThread,LoginRepository respository) {
         super(threadExecutor, postExecutionThread);
         this.mRepository = respository;
     }
@@ -145,10 +145,6 @@ public class LoginPresenterImpl extends AbstractPresenter implements LoginPresen
         loginParams.put("user_name", mView.getPassword());
         return loginParams;
     }
-...
-
-
-...
 ```
 
 License
