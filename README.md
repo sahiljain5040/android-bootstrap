@@ -1,7 +1,7 @@
 # Overview
 This is starter template for writing Android apps using **Clean architecture**. You can download it, modify it and start building your apps on top of it. Most of the boilerplate code for writing your first view, presenter interactor( UseCase ) and repository is already written and you just need to implement your own logic.
 
-In this template I have used **Rxjava** along with  regular Java and **Dagger** for Dependency Injection. Although the architecture itself is probably complex, but in today's World any modern app is incomplete without these two  **Jargon's**
+In this template I have used **Rxjava** along with  regular Java and **Dagger** for Dependency Injection. Although the architecture itself is probably complex, but in today's World any modern app is incomplete without these two  **Jargon's**.
 
 ## Libraries included
 
@@ -34,7 +34,7 @@ The general structure for the android app looks like this:
 
 - **"data"** module:  This is also outer layer. This module provides the implementation of repositories required by the inner layer.
 
-- **"domain"** module: This is the inner layer. This module consists of our core business logic. All The UseCase and repositories definities goes here. This module should only consists of POJO classes.
+- **"domain"** module: This is the inner layer. This module consists of our core business logic. All The UseCase and repositories(Signatures) goes here. This module should only consists of POJO classes.
 
 ## Example
 Suppose we need to build a Login Activity, where user need to enter username and password and authenticates over our backend server.
