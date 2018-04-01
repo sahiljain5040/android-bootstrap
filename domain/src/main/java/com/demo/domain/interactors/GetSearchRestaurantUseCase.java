@@ -39,7 +39,7 @@ public class GetSearchRestaurantUseCase extends UseCase<List<SearchResult>, Map<
         return mRepository.getRestaurants(queryParams)
                 .map(new Function<List<RestaurantWrapper>, HashMap<String, ArrayList<Restaurant>>>() {
                     @Override
-                    public HashMap<String, ArrayList<Restaurant>> apply(List<RestaurantWrapper> restaurantWrappers) throws Exception {
+                    public HashMap<String, ArrayList<Restaurant>> apply(List<RestaurantWrapper> restaurantWrappers) throws Exception{
                         return SearchResultsHelper.getRestaurantsByCuisineType(restaurantWrappers);
                     }
                 })
