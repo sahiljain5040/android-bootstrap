@@ -44,7 +44,7 @@ public class GetSearchRestaurantUseCaseTest {
     }
 
     @Test
-    public void buildUseCaseObservable_IfResultsResturnedByRepositoryAreNull(){
+    public void testBuildUseCaseObservable_ResultsReturnedByRepositoryAreNull_ExceptionIsThrown(){
         when(mRestaurantRepository.getRestaurants((anyMapOf(String.class, String.class))))
                 .thenReturn(null);
 
@@ -53,7 +53,7 @@ public class GetSearchRestaurantUseCaseTest {
     }
 
     @Test
-    public void buildUseCaseObservable_IfResultsResturnedByRepositoryAreValid(){
+    public void testBuildUseCaseObservable_ResultsReturnedByRepositoryAreValid_ResultsAreConvertedIntoSearchResults(){
         //Given
         given(mRestaurantRepository.getRestaurants((anyMapOf(String.class, String.class))))
                 .willReturn(getValidRestaurantListObservable());

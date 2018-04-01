@@ -46,7 +46,7 @@ public class SearchPresenterTest {
     }
 
     @Test
-    public void loadThrowsException_IfViewNotSet() throws Exception {
+    public void testLoad_ViewNotSet_ExceptionIsThrown() throws Exception {
 
         exception.expect(Exception.class);
         exception.expectMessage("setView() not called Before calling load()");
@@ -54,7 +54,7 @@ public class SearchPresenterTest {
     }
 
     @Test
-    public void loadHasZeroViewAndUseCaseInteractions_IfViewNotSet(){
+    public void testLoad_ViewNotSet_ViewAndUseCaseHasZeroInteractions(){
         try {
             mSearchPresenter.load("");
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class SearchPresenterTest {
     }
 
     @Test
-    public void loadResults_IfViewIsSetAndSuccessfullyGotResults() throws Exception {
+    public void testLoad_ViewSetAndGotSearchResults_ViewAndUseCaseHasPositiveInteractions() throws Exception {
         mSearchPresenter.setView(mView);
         String searchQuery = "";
         final List<SearchResult> searchResults = new ArrayList<>();
@@ -91,7 +91,7 @@ public class SearchPresenterTest {
     }
 
     @Test
-    public void loadShowError_IfViewIsSetAndGetSearchResultsFailed() throws Exception {
+    public void testLoad_ViewSetAndSearchResultsFailed_ViewHasNegativeInteractions() throws Exception {
         mSearchPresenter.setView(mView);
         String searchQuery = "";
 
