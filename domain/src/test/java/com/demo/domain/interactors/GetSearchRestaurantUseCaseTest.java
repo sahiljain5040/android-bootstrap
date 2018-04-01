@@ -1,7 +1,5 @@
 package com.demo.domain.interactors;
 
-import com.demo.domain.executor.Executor;
-import com.demo.domain.executor.PostExecutionThread;
 import com.demo.domain.model.Restaurant;
 import com.demo.domain.model.RestaurantWrapper;
 import com.demo.domain.model.SearchResult;
@@ -12,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -25,7 +24,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyMapOf;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -36,17 +34,13 @@ import static org.mockito.Mockito.when;
 public class GetSearchRestaurantUseCaseTest {
 
     @Mock RestaurantRepository mRestaurantRepository;
-    @Mock GetSearchRestaurantUseCase mGetSearchRestaurantUseCase;
+    @InjectMocks GetSearchRestaurantUseCase mGetSearchRestaurantUseCase;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
 
     @Before
     public void setUp(){
-        Executor executor = mock(Executor.class);
-        PostExecutionThread postExecutionThread = mock(PostExecutionThread.class);
-        mRestaurantRepository = mock(RestaurantRepository.class);
-        mGetSearchRestaurantUseCase = new GetSearchRestaurantUseCase(executor, postExecutionThread, mRestaurantRepository);
     }
 
     @Test

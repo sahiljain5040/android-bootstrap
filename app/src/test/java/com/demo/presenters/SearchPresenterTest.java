@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -23,7 +24,6 @@ import io.reactivex.observers.DisposableObserver;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyMapOf;
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
@@ -37,17 +37,12 @@ public class SearchPresenterTest {
 
     @Mock GetSearchRestaurantUseCase mSearchRestaurantUseCase;
     @Mock SearchPresenter.View mView;
-    @Mock SearchPresenterImpl mSearchPresenter;
+    @InjectMocks SearchPresenterImpl mSearchPresenter;
 
     @Rule public ExpectedException exception = ExpectedException.none();
 
     @Before
     public void setUp(){
-
-        mView = mock(SearchPresenter.View.class);
-        mSearchRestaurantUseCase = mock(GetSearchRestaurantUseCase.class);
-
-        mSearchPresenter = new SearchPresenterImpl(mSearchRestaurantUseCase);
     }
 
     @Test
