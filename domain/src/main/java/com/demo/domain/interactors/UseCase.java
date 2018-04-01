@@ -6,18 +6,9 @@ import com.demo.domain.executor.PostExecutionThread;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Created by dmilicic on 8/4/15.
- * <p/>
- * This abstract class implements some common methods for all interactors. Cancelling an interactor, check if its running
- * and finishing an interactor has mostly the same code throughout so that is why this class was created. Field methods
- * are declared volatile as we might use these methods from different threads (mainly from UI).
- * <p/>
- * For example, when an activity is getting destroyed then we should probably cancel an interactor
- * but the request will come from the UI thread unless the request was specifically assigned to a background thread.
- */
 public abstract class UseCase<T, Params>{
 
     protected Executor mThreadExecutor;
@@ -40,14 +31,14 @@ public abstract class UseCase<T, Params>{
      */
     public abstract Observable<T> buildUseCaseObservable(Params params);
 
-    public void execute(UseCaseObserver<T> useCaseObserver, Params params) {
+    public void execute(DisposableObserver<T> disposableObserver, Params params) {
 
         this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from(mThreadExecutor))
                 .observeOn(mPostExecutionThread.getScheduler())
-                .subscribe(useCaseObserver);
+                .subscribe(disposableObserver);
 
-        addDisposable(useCaseObserver);
+        addDisposable(disposableObserver);
     }
 
     /**
