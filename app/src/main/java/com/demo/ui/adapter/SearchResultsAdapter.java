@@ -73,6 +73,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultViewH
     @Override
     public void onBindViewHolder(SearchResultViewHolder holder, int position) {
         SearchResult searchResult = mSearchResultsList.get(position);
+        holder.bind(searchResult);
         if (searchResult.isRestaurant()) {
             if (TextUtils.isEmpty(searchResult.getRestaurant().getThumb())) {
                 holder.mImage.setImageResource(R.drawable.not_available);

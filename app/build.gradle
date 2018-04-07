@@ -62,6 +62,9 @@ dependencies {
     androidTestCompile("com.android.support.test.espresso:espresso-core:${rootProject.ext.androidEspressoVersion}", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:${rootProject.ext.androidEspressoVersion}", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 
     testCompile "junit:junit:${rootProject.ext.junitVersion}"
     // Optional -- Mockito framework
