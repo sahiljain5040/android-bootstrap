@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.demo.data.RestaurantApiRepository;
+import com.demo.data.repository.RestaurantApiRepository;
 import com.demo.domain.executor.Executor;
 import com.demo.domain.executor.PostExecutionThread;
 import com.demo.domain.executor.impl.ThreadExecutor;

@@ -1,4 +1,4 @@
-package com.demo.data;
+package com.demo.data.repository;
 
 import com.demo.data.network.api.SearchApi;
 import com.demo.data.network.response.ApiSearchRestaurantsResponse;
@@ -13,7 +13,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
-import retrofit2.Retrofit;
 
 /**
  * Created by sahil on 3/17/18.
@@ -23,8 +22,8 @@ public class RestaurantApiRepository implements RestaurantRepository {
     private SearchApi mSearchApi;
 
     @Inject
-    public RestaurantApiRepository(Retrofit retrofit){
-        mSearchApi = retrofit.create(SearchApi.class);
+    public RestaurantApiRepository(SearchApi searchApi){
+        mSearchApi = searchApi;
     }
 
     @Override

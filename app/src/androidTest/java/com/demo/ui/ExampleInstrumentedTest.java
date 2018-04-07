@@ -1,4 +1,4 @@
-package com.demo.androidbootstrap;
+package com.demo.ui;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

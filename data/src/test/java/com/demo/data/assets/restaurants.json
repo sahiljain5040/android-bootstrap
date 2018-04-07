@@ -1,0 +1,95 @@
+{
+  "results_found": 2226,
+  "results_start": 0,
+  "results_shown": 20,
+  "restaurants": [
+    {
+      "restaurant": {
+        "R": {
+          "res_id": 18439555
+        },
+        "apikey": "bfa22e44cfb2c54b6ba416baeef47e01",
+        "id": "18439555",
+        "name": "The Bakery",
+        "url": "https://www.zomato.com/ncr/the-bakery-vasundhara-ghaziabad?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "location": {
+          "address": "2C/334, Vasundhara, Ghaziabad",
+          "locality": "Vasundhara",
+          "city": "Ghaziabad",
+          "city_id": 1,
+          "latitude": "28.6677911516",
+          "longitude": "77.3739459738",
+          "zipcode": "",
+          "country_id": 1,
+          "locality_verbose": "Vasundhara, Ghaziabad"
+        },
+        "switch_to_order_menu": 0,
+        "cuisines": "Bakery",
+        "average_cost_for_two": 400,
+        "price_range": 1,
+        "currency": "Rs.",
+        "offers": [],
+        "thumb": "",
+        "user_rating": {
+          "aggregate_rating": "0",
+          "rating_text": "Not rated",
+          "rating_color": "CBCBC8",
+          "votes": "0"
+        },
+        "photos_url": "https://www.zomato.com/ncr/the-bakery-vasundhara-ghaziabad/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
+        "menu_url": "https://www.zomato.com/ncr/the-bakery-vasundhara-ghaziabad/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
+        "featured_image": "",
+        "has_online_delivery": 1,
+        "is_delivering_now": 0,
+        "deeplink": "zomato://restaurant/18439555",
+        "has_table_booking": 0,
+        "events_url": "https://www.zomato.com/ncr/the-bakery-vasundhara-ghaziabad/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "establishment_types": []
+      }
+    },
+    {
+      "restaurant": {
+        "R": {
+          "res_id": 18553671
+        },
+        "apikey": "bfa22e44cfb2c54b6ba416baeef47e01",
+        "id": "18553671",
+        "name": "The Bakery",
+        "url": "https://www.zomato.com/ncr/the-bakery-sector-12-gurgaon?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "location": {
+          "address": "Plot 270, Rajiv Nagar, Opposite Gufa Wala Shiv Mandir, Sector 12, Gurgaon",
+          "locality": "Sector 12",
+          "city": "Gurgaon",
+          "city_id": 1,
+          "latitude": "28.4762727569",
+          "longitude": "77.0338100195",
+          "zipcode": "",
+          "country_id": 1,
+          "locality_verbose": "Sector 12, Gurgaon"
+        },
+        "switch_to_order_menu": 0,
+        "cuisines": "Bakery, Fast Food",
+        "average_cost_for_two": 200,
+        "price_range": 1,
+        "currency": "Rs.",
+        "offers": [],
+        "thumb": "",
+        "user_rating": {
+          "aggregate_rating": "0",
+          "rating_text": "Not rated",
+          "rating_color": "CBCBC8",
+          "votes": "1"
+        },
+        "photos_url": "https://www.zomato.com/ncr/the-bakery-sector-12-gurgaon/photos?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1#tabtop",
+        "menu_url": "https://www.zomato.com/ncr/the-bakery-sector-12-gurgaon/menu?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1&openSwipeBox=menu&showMinimal=1#tabtop",
+        "featured_image": "",
+        "has_online_delivery": 1,
+        "is_delivering_now": 0,
+        "deeplink": "zomato://restaurant/18553671",
+        "has_table_booking": 0,
+        "events_url": "https://www.zomato.com/ncr/the-bakery-sector-12-gurgaon/events#tabtop?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1",
+        "establishment_types": []
+      }
+    }
+  ]
+}
