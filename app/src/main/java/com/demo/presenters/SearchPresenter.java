@@ -1,7 +1,6 @@
 package com.demo.presenters;
 
 import com.demo.presenters.base.BasePresenter;
-import com.demo.domain.model.SearchResult;
 
 import java.util.List;
 

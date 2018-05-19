@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.demo.androidbootstrap.R;
 import com.demo.base.BaseActivity;
-import com.demo.domain.model.SearchResult;
 import com.demo.presenters.SearchPresenter;
 import com.demo.presenters.impl.SearchPresenterImpl;
 import com.demo.ui.adapter.SearchResultsAdapter;

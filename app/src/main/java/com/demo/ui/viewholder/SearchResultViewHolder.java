@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.demo.SampleApplication;
 import com.demo.androidbootstrap.R;
-import com.demo.domain.model.SearchResult;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

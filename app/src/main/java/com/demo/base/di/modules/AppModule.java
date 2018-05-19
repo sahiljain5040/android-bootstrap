@@ -5,10 +5,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.demo.data.repository.RestaurantApiRepository;
-import com.demo.domain.executor.Executor;
-import com.demo.domain.executor.PostExecutionThread;
-import com.demo.domain.executor.impl.ThreadExecutor;
-import com.demo.domain.repository.RestaurantRepository;
 import com.demo.threading.MainThread;
 
 import javax.inject.Singleton;

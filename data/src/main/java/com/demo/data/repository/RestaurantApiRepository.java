@@ -2,9 +2,6 @@ package com.demo.data.repository;
 
 import com.demo.data.network.api.SearchApi;
 import com.demo.data.network.response.ApiSearchRestaurantsResponse;
-import com.demo.domain.model.RestaurantWrapper;
-import com.demo.domain.repository.RestaurantRepository;
-import com.demo.domain.utils.Constants;
 
 import java.util.List;
 import java.util.Map;

@@ -6,9 +6,6 @@ import android.content.SharedPreferences;
 import com.demo.base.di.modules.AppModule;
 import com.demo.base.di.modules.NetworkModule;
 import com.demo.data.network.api.SearchApi;
-import com.demo.domain.executor.Executor;
-import com.demo.domain.executor.PostExecutionThread;
-import com.demo.domain.repository.RestaurantRepository;
 import com.google.gson.Gson;
 
 import javax.inject.Singleton;

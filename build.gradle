@@ -44,6 +44,8 @@ allprojects {
         javaxAnnotationVersion = '1.0'
 
         picassoVersion = '2.5.2'
+
+        kotlinVersion = '1.2.41'
     }
 }
 

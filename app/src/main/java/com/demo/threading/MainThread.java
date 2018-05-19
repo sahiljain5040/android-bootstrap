@@ -3,8 +3,6 @@ package com.demo.threading;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.demo.domain.executor.PostExecutionThread;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

@@ -1,8 +1,6 @@
 package com.demo.presenters;
 
-import com.demo.domain.interactors.GetSearchRestaurantUseCase;
 import com.demo.domain.interactors.UseCaseObserver;
-import com.demo.domain.model.SearchResult;
 import com.demo.presenters.impl.SearchPresenterImpl;
 
 import org.junit.Before;

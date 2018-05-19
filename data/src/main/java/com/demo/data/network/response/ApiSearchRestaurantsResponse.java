@@ -1,8 +1,6 @@
 package com.demo.data.network.response;
 
 
-import com.demo.domain.model.RestaurantWrapper;
-
 import java.util.ArrayList;
 
 /**

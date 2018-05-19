@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.demo.SampleApplication;
 import com.demo.ui.viewholder.SearchResultViewHolder;
 import com.demo.androidbootstrap.R;
-import com.demo.domain.model.SearchResult;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

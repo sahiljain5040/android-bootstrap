@@ -1,10 +1,5 @@
 package com.demo.domain.interactors;
 
-import com.demo.domain.model.Restaurant;
-import com.demo.domain.model.RestaurantWrapper;
-import com.demo.domain.model.SearchResult;
-import com.demo.domain.repository.RestaurantRepository;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

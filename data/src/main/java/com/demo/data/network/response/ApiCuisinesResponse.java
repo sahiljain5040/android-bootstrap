@@ -1,7 +1,5 @@
 package com.demo.data.network.response;
 
-import com.demo.domain.model.CuisineWrapper;
-
 import java.util.ArrayList;
 
 /**
