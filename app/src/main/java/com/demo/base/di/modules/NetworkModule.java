@@ -3,7 +3,6 @@ package com.demo.base.di.modules;
 import android.app.Application;
 import android.util.Log;
 
-import com.demo.data.network.api.SearchApi;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

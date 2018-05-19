@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.demo.data.repository.RestaurantApiRepository;
 import com.demo.threading.MainThread;
 
 import javax.inject.Singleton;

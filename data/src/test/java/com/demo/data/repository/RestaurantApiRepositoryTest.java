@@ -1,7 +1,5 @@
 package com.demo.data.repository;
 
-import com.demo.data.network.api.SearchApi;
-import com.demo.data.network.response.ApiSearchRestaurantsResponse;
 import com.demo.domain.interactors.UseCaseObserver;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
