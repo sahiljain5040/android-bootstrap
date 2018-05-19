@@ -8,7 +8,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
-abstract class UseCase<T, Params>(protected var mThreadExecutor: Executor, protected var mPostExecutionThread: PostExecutionThread) {
+abstract class UseCase<T, Params>(private val mThreadExecutor: Executor, private val mPostExecutionThread
+                                        : PostExecutionThread) {
 
     private var disposables: CompositeDisposable
     /**
@@ -55,7 +56,7 @@ abstract class UseCase<T, Params>(protected var mThreadExecutor: Executor, prote
     /**
      * Dispose from current [CompositeDisposable].
      */
-    protected fun addDisposable(disposable: Disposable) {
+    private fun addDisposable(disposable: Disposable) {
         isDisposed = false
         disposables.add(disposable)
     }
