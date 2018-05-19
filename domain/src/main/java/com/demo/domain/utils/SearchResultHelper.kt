@@ -13,7 +13,7 @@ fun getRestaurantsByCuisineType(restaurantsList: List<RestaurantWrapper>): HashM
         val restaurant = restaurantWrapper.restaurant
         val cuisinesList = restaurantWrapper.restaurant.cuisines.split(", ")
         for (cuisineOffered in cuisinesList) {
-            var cuisineOfferingRestaurants = ArrayList<Restaurant>(restaurantsByCuisine[cuisineOffered])
+            val cuisineOfferingRestaurants = ArrayList<Restaurant>(restaurantsByCuisine[cuisineOffered])
             cuisineOfferingRestaurants.add(restaurant)
             restaurantsByCuisine[cuisineOffered] = cuisineOfferingRestaurants
         }
