@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:id="@+id/send_message_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/module_half_dp"
+        android:background="#3F999999" />
+
+    <LinearLayout
+        android:id="@+id/send_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/send_message_divider"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <com.demo.chat.widget.EditText
+            android:id="@+id/edit_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/module_small"
+            android:layout_marginStart="@dimen/module_small"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:hint="Enter message"
+            android:includeFontPadding="false"
+            android:inputType="textCapSentences"
+            android:paddingBottom="@dimen/module_medium"
+            android:paddingTop="@dimen/module_medium"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/small_font"/>
+
+        <ImageButton
+            android:id="@+id/send_msg_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:background="@android:color/transparent"
+            android:padding="@dimen/module_medium"
+            android:src="@mipmap/ic_send_inactive" />
+    </LinearLayout>
+</merge>

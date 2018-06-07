@@ -5,7 +5,10 @@ import android.content.SharedPreferences;
 
 import com.demo.base.di.modules.AppModule;
 import com.demo.base.di.modules.NetworkModule;
+import com.demo.data.chat.daos.MessageDao;
+import com.demo.data.chat.database.ChatDatabase;
 import com.demo.data.network.api.SearchApi;
+import com.demo.domain.chat.repository.MessageRepository;
 import com.demo.domain.executor.Executor;
 import com.demo.domain.executor.PostExecutionThread;
 import com.demo.domain.repository.RestaurantRepository;
@@ -27,6 +30,9 @@ public interface AppComponent {
 
     Application providesApplication();
     SharedPreferences provideSharedPreferences();
+    ChatDatabase provideChatDatabase();
+    MessageDao provideMessageDao();
+    MessageRepository provideMessageRepository();
 
     Executor provideThreadExecutor();
     PostExecutionThread providePostExecutionThread();

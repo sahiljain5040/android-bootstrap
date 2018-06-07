@@ -40,6 +40,10 @@ dependencies {
     compile "io.reactivex.rxjava2:rxjava:${rootProject.ext.reactiveJavaVersion}"
     compile "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
 
+    compile "android.arch.persistence.room:runtime:${rootProject.ext.roomVersion}"
+    compile "android.arch.persistence.room:rxjava2:${rootProject.ext.roomVersion}"
+    annotationProcessor "android.arch.persistence.room:compiler:${rootProject.ext.roomVersion}"
+
     testCompile "junit:junit:${rootProject.ext.junitVersion}"
     testCompile "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
     androidTestCompile("com.android.support.test.espresso:espresso-core:${rootProject.ext.androidEspressoVersion}", {

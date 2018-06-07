@@ -7,7 +7,7 @@ import javax.inject.Scope;
 
 
 /**
- * A scoping annotation to permit dependencies conform to the life of ConfigPersistentComponent.
+ * Transformer scoping annotation to permit dependencies conform to the life of ConfigPersistentComponent.
  */
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
