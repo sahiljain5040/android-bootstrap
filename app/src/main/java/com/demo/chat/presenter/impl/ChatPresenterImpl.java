@@ -3,7 +3,7 @@ package com.demo.chat.presenter.impl;
 import com.demo.chat.presenter.ChatPresenter;
 import com.demo.domain.chat.interactors.GetMessagesUseCase;
 import com.demo.domain.chat.interactors.SendMessageUseCase;
-import com.demo.domain.chat.interactors.UseCaseSubscriber;
+import com.demo.domain.base.interactor.UseCaseSubscriber;
 import com.demo.domain.chat.models.Message;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.TimerTask;
 
 import javax.inject.Inject;
 
-import static com.demo.domain.utils.Constants.INTERVENTION_DELAY;
+import static com.demo.domain.base.utils.Constants.INTERVENTION_DELAY;
 
 public class ChatPresenterImpl implements ChatPresenter {
 

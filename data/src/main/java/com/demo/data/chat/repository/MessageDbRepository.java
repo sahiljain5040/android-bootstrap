@@ -9,7 +9,7 @@ import com.demo.data.chat.daos.MessageDao;
 import com.demo.data.chat.response.ChatApiResponse;
 import com.demo.domain.chat.models.Message;
 import com.demo.domain.chat.repository.MessageRepository;
-import com.demo.domain.utils.Constants;
+import com.demo.domain.base.utils.Constants;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;

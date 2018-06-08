@@ -5,17 +5,15 @@ import android.arch.persistence.room.Room;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.demo.base.threading.MainThread;
 import com.demo.data.chat.daos.MessageDao;
 import com.demo.data.chat.database.ChatDatabase;
 import com.demo.data.chat.repository.MessageDbRepository;
-import com.demo.data.repository.RestaurantApiRepository;
 import com.demo.domain.chat.repository.MessageRepository;
-import com.demo.domain.executor.Executor;
-import com.demo.domain.executor.PostExecutionThread;
-import com.demo.domain.executor.impl.ThreadExecutor;
-import com.demo.domain.repository.RestaurantRepository;
-import com.demo.domain.utils.Constants;
-import com.demo.threading.MainThread;
+import com.demo.domain.base.executor.Executor;
+import com.demo.domain.base.executor.PostExecutionThread;
+import com.demo.domain.base.executor.impl.ThreadExecutor;
+import com.demo.domain.base.utils.Constants;
 
 import javax.inject.Singleton;
 
@@ -56,12 +54,6 @@ public class AppModule {
     @Singleton
     PostExecutionThread providePostExecutionThread(MainThread uiThread) {
         return uiThread;
-    }
-
-    @Provides
-    @Singleton
-    RestaurantRepository provideRestaurantApiRepository(RestaurantApiRepository restaurantApiRepository) {
-        return restaurantApiRepository;
     }
 
     @Provides

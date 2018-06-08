@@ -1,7 +1,7 @@
 package com.demo.chat.presenter;
 
 import com.demo.domain.chat.models.Message;
-import com.demo.presenters.base.BasePresenter;
+import com.demo.base.presenter.BasePresenter;
 
 import java.util.List;
 

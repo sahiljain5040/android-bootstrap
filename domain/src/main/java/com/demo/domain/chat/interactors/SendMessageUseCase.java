@@ -1,9 +1,10 @@
 package com.demo.domain.chat.interactors;
 
+import com.demo.domain.base.interactor.UseCase;
 import com.demo.domain.chat.models.Message;
 import com.demo.domain.chat.repository.MessageRepository;
-import com.demo.domain.executor.PostExecutionThread;
-import com.demo.domain.executor.impl.ThreadExecutor;
+import com.demo.domain.base.executor.PostExecutionThread;
+import com.demo.domain.base.executor.impl.ThreadExecutor;
 
 import java.util.UUID;
 
@@ -11,7 +12,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 
-public class SendMessageUseCase extends UseCase<Boolean, String>{
+public class SendMessageUseCase extends UseCase<Boolean, String> {
 
     private MessageRepository messageRepository;
 

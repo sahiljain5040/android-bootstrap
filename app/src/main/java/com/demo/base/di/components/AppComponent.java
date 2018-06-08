@@ -8,11 +8,9 @@ import com.demo.base.di.modules.AppModule;
 import com.demo.base.di.modules.NetworkModule;
 import com.demo.data.chat.daos.MessageDao;
 import com.demo.data.chat.database.ChatDatabase;
-import com.demo.data.network.api.SearchApi;
 import com.demo.domain.chat.repository.MessageRepository;
-import com.demo.domain.executor.Executor;
-import com.demo.domain.executor.PostExecutionThread;
-import com.demo.domain.repository.RestaurantRepository;
+import com.demo.domain.base.executor.Executor;
+import com.demo.domain.base.executor.PostExecutionThread;
 import com.google.gson.Gson;
 
 import javax.inject.Singleton;
@@ -39,9 +37,7 @@ public interface AppComponent {
 
     Executor provideThreadExecutor();
     PostExecutionThread providePostExecutionThread();
-    RestaurantRepository provideRestaurantApiRepository();
     Cache provideOkHttpCache();
     Gson provideGson();
     OkHttpClient provideOkHttpClient();
-    SearchApi provideSearchApi();
 }

@@ -1,13 +1,11 @@
 package com.demo;
 
-import android.util.Log;
-
 import com.demo.base.BootstrapApplication;
 import com.demo.base.di.modules.NetworkModule;
 import com.demo.domain.chat.interactors.PreloadChatUseCase;
-import com.demo.domain.chat.interactors.UseCaseSubscriber;
+import com.demo.domain.base.interactor.UseCaseSubscriber;
 import com.demo.domain.chat.repository.MessageRepository;
-import com.demo.domain.utils.Constants;
+import com.demo.domain.base.utils.Constants;
 
 import javax.inject.Inject;
 
