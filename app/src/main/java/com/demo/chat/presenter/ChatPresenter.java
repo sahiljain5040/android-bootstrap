@@ -11,6 +11,8 @@ public interface ChatPresenter extends BasePresenter{
         void onResultsLoading();
         void onResultsLoaded(List<Message> messages);
         void onResultsFailed();
+        void showIntervention();
+        void hideIntervention();
     }
 
     void setView(ChatPresenter.View view);

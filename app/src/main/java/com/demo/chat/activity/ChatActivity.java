@@ -1,6 +1,7 @@
 package com.demo.chat.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import com.demo.androidbootstrap.R;
 import com.demo.base.BaseActivity;
 import com.demo.chat.adapter.MessageRecycleAdapter;
+import com.demo.chat.fragment.InterventionFragment;
 import com.demo.chat.presenter.ChatPresenter;
 import com.demo.chat.presenter.impl.ChatPresenterImpl;
 import com.demo.chat.widget.InputChatView;
@@ -81,6 +83,31 @@ public class ChatActivity extends BaseActivity implements ChatPresenter.View, In
     @Override
     public void onResultsFailed() {
         Toast.makeText(this, "Sorry, Some Error Occured", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showIntervention() {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(InterventionFragment.TAG);
+        if(fragment == null || fragment.isDetached()){
+            fragment = InterventionFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.intervention_fade_in, R.anim.intervention_fade_out,
+                            R.anim.intervention_fade_in, R.anim.intervention_fade_out)
+                    .replace(R.id.intervention_container, fragment, InterventionFragment.TAG)
+                    .commitAllowingStateLoss();
+        }
+    }
+
+    @Override
+    public void hideIntervention() {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(InterventionFragment.TAG);
+        if (fragment != null && !fragment.isDetached()) {
+            getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.intervention_fade_in, R.anim.intervention_fade_out,
+                            R.anim.intervention_fade_in, R.anim.intervention_fade_out)
+                    .replace(R.id.intervention_container, new Fragment())
+                    .commitAllowingStateLoss();
+        }
     }
 
     @Override

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <View
         android:id="@+id/send_message_divider"
@@ -24,7 +23,6 @@
             android:layout_marginStart="@dimen/module_small"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:fontFamily="sans-serif"
             android:hint="Enter message"
             android:includeFontPadding="false"
             android:inputType="textCapSentences"

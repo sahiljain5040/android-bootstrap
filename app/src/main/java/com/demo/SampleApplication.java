@@ -4,9 +4,12 @@ import android.util.Log;
 
 import com.demo.base.BootstrapApplication;
 import com.demo.base.di.modules.NetworkModule;
-import com.demo.data.chat.PreloadedDataProvider;
+import com.demo.domain.chat.interactors.PreloadChatUseCase;
+import com.demo.domain.chat.interactors.UseCaseSubscriber;
 import com.demo.domain.chat.repository.MessageRepository;
 import com.demo.domain.utils.Constants;
+
+import javax.inject.Inject;
 
 /**
  * Created by sahil on 3/17/18.
@@ -14,20 +17,43 @@ import com.demo.domain.utils.Constants;
 
 public class SampleApplication extends BootstrapApplication {
 
+    @Inject
+    PreloadChatUseCase mPreloadChatUseCase;
+    @Inject
+    MessageRepository mMessageRepository;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        getAppComponent().inject(this);
         init();
     }
 
     private void init(){
-        MessageRepository messageRepository = getAppComponent().provideMessageRepository();
-        if(!messageRepository.isPreloadedDataAvailable()){
-            messageRepository.insertMessages(PreloadedDataProvider.getDefaultMessages());
-            messageRepository.setPreloadedDataAvailable(true);
+        if(!mMessageRepository.isPreloadedDataAvailable()){
+            mPreloadChatUseCase.dispose();
+            mPreloadChatUseCase.execute(getPreloadDataObserver(), "");
         }
+    }
 
-        Log.d("Sahil", "Data: " + messageRepository.getMessages().toString());
+    private UseCaseSubscriber<Boolean> getPreloadDataObserver(){
+        return new UseCaseSubscriber<Boolean>(){
+            @Override
+            public void onNext(Boolean isSuccess) {
+                super.onNext(isSuccess);
+                if(isSuccess){
+                    mMessageRepository.setPreloadedDataAvailable(true);
+                }else{
+                    mMessageRepository.setPreloadedDataAvailable(false);
+                }
+            }
+
+            @Override
+            public void onError(Throwable exception) {
+                super.onError(exception);
+                mMessageRepository.setPreloadedDataAvailable(false);
+            }
+        };
     }
 
     @Override

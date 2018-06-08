@@ -7,14 +7,19 @@ import com.demo.domain.chat.interactors.UseCaseSubscriber;
 import com.demo.domain.chat.models.Message;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.inject.Inject;
+
+import static com.demo.domain.utils.Constants.INTERVENTION_DELAY;
 
 public class ChatPresenterImpl implements ChatPresenter {
 
     private GetMessagesUseCase mGetMessagesUseCase;
     private SendMessageUseCase mSendMessageUseCase;
     private ChatPresenter.View mView;
+    private Timer mTimer;
 
     @Inject
     public ChatPresenterImpl(GetMessagesUseCase getMessagesUseCase, SendMessageUseCase sendMessageUseCase){
@@ -70,6 +75,9 @@ public class ChatPresenterImpl implements ChatPresenter {
             @Override
             public void onNext(Boolean isSuccess) {
                 super.onNext(isSuccess);
+                cancelInterventionTimer();
+                startInterventionTimer();
+                mView.hideIntervention();
                 mSendMessageUseCase.dispose();
             }
 
@@ -83,7 +91,21 @@ public class ChatPresenterImpl implements ChatPresenter {
 
     @Override
     public void resume() {
+        startInterventionTimer();
+    }
 
+    private void startInterventionTimer(){
+        TimerTask timerTask;
+        if(mTimer == null){
+            timerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    mView.showIntervention();
+                }
+            };
+            mTimer = new Timer();
+            mTimer.schedule(timerTask, INTERVENTION_DELAY);//delay of 1 min
+        }
     }
 
     @Override
@@ -93,7 +115,14 @@ public class ChatPresenterImpl implements ChatPresenter {
 
     @Override
     public void stop() {
+        cancelInterventionTimer();
+    }
 
+    private void cancelInterventionTimer() {
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+        }
     }
 
     @Override

@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/input_chat"
         android:clipToPadding="false"
-        android:paddingBottom="8dp"
+        android:paddingBottom="40dp"
         android:visibility="visible" />
 
     <LinearLayout

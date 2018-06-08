@@ -19,4 +19,6 @@ public interface MessageRepository {
     void insertMessage(Message message);
 
     void insertMessages(List<Message> messages);
+
+    void loadMessages() throws Exception;
 }

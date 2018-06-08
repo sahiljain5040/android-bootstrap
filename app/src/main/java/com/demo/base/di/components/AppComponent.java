@@ -3,6 +3,7 @@ package com.demo.base.di.components;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.demo.SampleApplication;
 import com.demo.base.di.modules.AppModule;
 import com.demo.base.di.modules.NetworkModule;
 import com.demo.data.chat.daos.MessageDao;
@@ -33,6 +34,8 @@ public interface AppComponent {
     ChatDatabase provideChatDatabase();
     MessageDao provideMessageDao();
     MessageRepository provideMessageRepository();
+
+    void inject(SampleApplication application);
 
     Executor provideThreadExecutor();
     PostExecutionThread providePostExecutionThread();

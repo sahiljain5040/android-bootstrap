@@ -1,13 +1,23 @@
 package com.demo.data.chat.repository;
 
+import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.demo.data.R;
 import com.demo.data.chat.Transformer;
 import com.demo.data.chat.daos.MessageDao;
+import com.demo.data.chat.response.ChatApiResponse;
 import com.demo.domain.chat.models.Message;
 import com.demo.domain.chat.repository.MessageRepository;
 import com.demo.domain.utils.Constants;
+import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +30,13 @@ import io.reactivex.functions.Function;
 @Singleton
 public class MessageDbRepository implements MessageRepository{
 
+    private Application application;
     private MessageDao messageDao;
     private SharedPreferences sharedPreferences;
 
     @Inject
-    public MessageDbRepository(MessageDao messageDao, SharedPreferences sharedPreferences){
+    public MessageDbRepository(Application app, MessageDao messageDao, SharedPreferences sharedPreferences){
+        this.application = app;
         this.messageDao = messageDao;
         this.sharedPreferences = sharedPreferences;
     }
@@ -76,5 +88,25 @@ public class MessageDbRepository implements MessageRepository{
             messageList.add(Transformer.getDbEntityFromMessage(message));
         }
         messageDao.insertMessages(messageList);
+    }
+
+    @Override
+    public void loadMessages() throws Exception {
+        InputStream is = application.getResources().openRawResource(R.raw.chat);
+        Writer writer = new StringWriter();
+        char[] buffer = new char[1024];
+        try {
+            Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            int n;
+            while ((n = reader.read(buffer)) != -1) {
+                writer.write(buffer, 0, n);
+            }
+        }finally {
+            is.close();
+        }
+
+        String jsonString = writer.toString();
+        ChatApiResponse chatApiResponse = new Gson().fromJson(jsonString, ChatApiResponse.class);
+        insertMessages(chatApiResponse.getChat());
     }
 }
