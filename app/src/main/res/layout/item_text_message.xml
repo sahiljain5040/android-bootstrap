@@ -12,15 +12,18 @@
     <RelativeLayout
         android:id="@+id/message_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end">
 
         <TextView
             android:id="@+id/message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/module_base_3"
+            android:paddingEnd="@dimen/module_base_3"
             android:paddingLeft="@dimen/module_base_3"
             android:paddingRight="@dimen/module_base_3"
+            android:paddingStart="@dimen/module_base_3"
             android:paddingTop="@dimen/module_base_3"
             android:textColor="@android:color/black"
             android:textSize="@dimen/small_font"
