@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,7 +16,7 @@ import butterknife.ButterKnife;
 public class MessageHolder extends RecyclerView.ViewHolder{
 
     @BindView(R.id.message_layout)
-    FrameLayout messageLayout;
+    RelativeLayout messageLayout;
 
     @BindView(R.id.message_text)
     TextView messageText;
