@@ -22,8 +22,8 @@ allprojects {
         androidCompileSdkVersion = 26
         androidBuildToolsVersion = '26.0.2'
 
-        androidAppCompatVersion = '27.1.0'
-        androidConstraintLayoutVersion = '1.0.2'
+        androidAppCompatVersion = '27.1.1'
+        androidConstraintLayoutVersion = '1.1.1'
         androidGooglePlayServicesVersion = '11.6.0'
 
         junitVersion = '4.12'
