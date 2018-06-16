@@ -36,7 +36,7 @@ allprojects {
         gsonConverterVersion = '2.2.0'
 
         butterknifeVersion = '8.8.1'
-        daggerVersion = '2.9'
+        daggerVersion = '2.16'
         reactiveJavaVersion = '2.1.0'
         reactiveAndroidVersion = '2.0.1'
         retrofitReactiveAdapterVersion = '2.2.0'
