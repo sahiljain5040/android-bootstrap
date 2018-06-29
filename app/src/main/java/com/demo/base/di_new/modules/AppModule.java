@@ -1,4 +1,4 @@
-package com.demo.base.di.modules;
+package com.demo.base.di_new.modules;
 
 import android.app.Application;
 import android.content.SharedPreferences;

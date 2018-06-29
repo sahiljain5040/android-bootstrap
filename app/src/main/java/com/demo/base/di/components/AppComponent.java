@@ -3,12 +3,13 @@ package com.demo.base.di.components;
 import android.app.Application;
 import android.content.SharedPreferences;
 
+import com.demo.base.BootstrapApplication;
 import com.demo.base.di.modules.AppModule;
 import com.demo.base.di.modules.NetworkModule;
-import com.demo.data.network.api.SearchApi;
-import com.demo.domain.executor.Executor;
-import com.demo.domain.executor.PostExecutionThread;
-import com.demo.domain.repository.RestaurantRepository;
+import com.demo.data.search.network.api.SearchApi;
+import com.demo.domain.base.executor.Executor;
+import com.demo.domain.base.executor.PostExecutionThread;
+import com.demo.domain.search.repository.RestaurantRepository;
 import com.google.gson.Gson;
 
 import javax.inject.Singleton;
@@ -24,6 +25,8 @@ import okhttp3.OkHttpClient;
 @Singleton
 @Component(modules = {AppModule.class, NetworkModule.class})
 public interface AppComponent {
+
+    void inject(BootstrapApplication application);
 
     Application providesApplication();
     SharedPreferences provideSharedPreferences();
