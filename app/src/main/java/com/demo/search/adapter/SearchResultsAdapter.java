@@ -1,18 +1,16 @@
 package com.demo.search.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.demo.SampleApplication;
-import com.demo.search.viewholder.SearchResultViewHolder;
-import com.demo.androidbootstrap.R;
+import com.demo.androidbootstrap.BR;
+import com.demo.androidbootstrap.databinding.SearchItemBinding;
+import com.demo.androidbootstrap.databinding.SearchResultsHeaderBinding;
 import com.demo.domain.search.model.SearchResult;
-import com.squareup.picasso.Picasso;
+import com.demo.search.viewholder.SearchResultViewHolder;
 
 import java.util.List;
 
@@ -54,41 +52,31 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultViewH
     @Override
     public SearchResultViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        LayoutInflater layoutInflater = (LayoutInflater) parent.getContext()
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewDataBinding binding = null;
 
-        View view = null;
+        LayoutInflater inflater= (LayoutInflater) parent.getContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         switch (viewType) {
             case HEADER:
-                view = layoutInflater.inflate(R.layout.activity_search_results_header, parent, false);
+                binding = SearchResultsHeaderBinding.inflate(inflater, parent, false);
                 break;
 
             case SEARCH_RESULT:
-                view = layoutInflater.inflate(R.layout.activity_search_item, parent, false);
+                binding = SearchItemBinding.inflate(inflater, parent, false);
                 break;
         }
-        return new SearchResultViewHolder(view);
+        return new SearchResultViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(SearchResultViewHolder holder, int position) {
         SearchResult searchResult = mSearchResultsList.get(position);
-        holder.bind(searchResult);
         if (searchResult.isRestaurant()) {
-            if (TextUtils.isEmpty(searchResult.getRestaurant().getThumb())) {
-                holder.mImage.setImageResource(R.drawable.not_available);
-            } else {
-                Picasso.with(SampleApplication.getContext()).load(searchResult.getRestaurant()
-                        .getThumb()).into(holder.mImage);
-            }
-            holder.mName.setText(searchResult.getRestaurant().getName());
-            holder.mAvgCost.setText("Avg cost for two: " + Integer.toString(searchResult.getRestaurant().getAverageCostForTwo()));
-            holder.mRating.setText(searchResult.getRestaurant().getUserRating().getAggregateRating());
-            holder.mRating.setBackgroundColor(Color.parseColor("#" + searchResult.getRestaurant().getUserRating().getRatingColor()));
-            holder.mCuisines.setText(searchResult.getRestaurant().getCuisines());
+            holder.getBinding().setVariable(BR.searchResult, searchResult);
         } else {
-            holder.mHeader.setText(searchResult.getName());
+            holder.getBinding().setVariable(BR.header, searchResult);
         }
+        holder.getBinding().executePendingBindings();
     }
 
     public List<SearchResult> getSearchResultsList() {

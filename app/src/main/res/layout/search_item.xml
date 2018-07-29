@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.graphics.Color"/>
+        <import type="com.demo.domain.search.model.SearchResult"/>
+        <import type="com.demo.search.viewholder.SearchResultViewHolder"/>
+        <variable name="searchResult" type="SearchResult"/>
+        <variable name="searchResultHolder" type="SearchResultViewHolder"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:onClick="@{(view) -> searchResultHolder.onClick(view, searchResult)}"
+        android:contentDescription="@{searchResult.restaurant.name}">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:image_url = "@{searchResult.restaurant.thumb}"
+            app:place_holder = "@{@drawable/not_available}"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@{searchResult.restaurant.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingTop="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@{searchResult.restaurant.userRating.aggregateRating}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            android:textColor="@android:color/white"
+            android:background="@{Color.parseColor(`#` + searchResult.restaurant.userRating.ratingColor)}"
+            tools:text="4.7"/>
+
+        <TextView
+            android:id="@+id/avg_cost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@{`Avg cost for two: ` + String.valueOf(searchResult.restaurant.averageCostForTwo)}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/rating"
+            app:layout_constraintEnd_toStartOf="@+id/rating"
+            app:layout_constraintStart_toEndOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/cuisines"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@{searchResult.restaurant.cuisines}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/rating" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

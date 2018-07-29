@@ -1,69 +1,40 @@
 package com.demo.search.viewholder;
 
-import android.support.annotation.Nullable;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.demo.SampleApplication;
-import com.demo.androidbootstrap.R;
+import com.demo.androidbootstrap.BR;
 import com.demo.domain.search.model.SearchResult;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by sahil on 10/19/17.
  */
 
-public class SearchResultViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class SearchResultViewHolder extends RecyclerView.ViewHolder{
 
-    @Nullable
-    @BindView(R.id.header_text)
-    public TextView mHeader;
+    private ViewDataBinding mBinding;
 
-    @Nullable
-    @BindView(R.id.image)
-    public ImageView mImage;
-
-    @Nullable
-    @BindView(R.id.name)
-    public TextView mName;
-
-    @Nullable
-    @BindView(R.id.rating)
-    public TextView mRating;
-
-    @Nullable
-    @BindView(R.id.avg_cost)
-    public TextView mAvgCost;
-
-    @Nullable
-    @BindView(R.id.cuisines)
-    public TextView mCuisines;
-
-    private SearchResult mSearchResult;
+    public SearchResultViewHolder(ViewDataBinding binding) {
+        super(binding.getRoot());
+        ButterKnife.bind(this, itemView);
+        mBinding = binding;
+        mBinding.setVariable(BR.searchResultHolder, this);
+    }
 
     public SearchResultViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-    public void bind(SearchResult searchResult){
-        if(searchResult.isRestaurant()){
-            itemView.setOnClickListener(this);
-            itemView.setContentDescription(searchResult.getRestaurant().getName());
-        }else{
-            itemView.setOnClickListener(null);
-            itemView.setContentDescription(searchResult.getName());
-        }
-        mSearchResult = searchResult;
+    public void onClick(View view, SearchResult searchResult) {
+        Toast.makeText(view.getContext(), searchResult.getRestaurant().getName(), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onClick(View view) {
-        Toast.makeText(SampleApplication.getContext(), mSearchResult.getRestaurant().getName(), Toast.LENGTH_SHORT).show();
+    public ViewDataBinding getBinding() {
+        return mBinding;
     }
 }
