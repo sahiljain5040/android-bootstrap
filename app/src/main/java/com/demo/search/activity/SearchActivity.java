@@ -1,5 +1,6 @@
 package com.demo.search.activity;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,21 +8,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.demo.androidbootstrap.R;
 import com.demo.domain.search.model.SearchResult;
-import com.demo.search.presenter.SearchPresenter;
-import com.demo.search.fragment.TestFragment;
 import com.demo.search.adapter.SearchResultsAdapter;
+import com.demo.search.fragment.TestFragment;
+import com.demo.search.viewmodel.SearchViewModel;
+import com.demo.search.viewmodel.factory.SearchViewModelFactory;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class SearchActivity extends AppCompatActivity implements SearchPresenter.View, HasSupportFragmentInjector{
+public class SearchActivity extends AppCompatActivity implements HasSupportFragmentInjector {
 
     @BindView(R.id.search_results)
     RecyclerView mSearchResultsRecyclerView;
@@ -51,9 +51,11 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
     @Inject
     DispatchingAndroidInjector<Fragment> mDispatchingAndroidInjector;
     @Inject
-    SearchPresenter mSearchActivityPresenter;
+    SearchViewModelFactory mSearchViewModelFactory;
     @Inject
     SearchResultsAdapter mSearchResultsAdapter;
+
+    SearchViewModel mSearchViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,24 +65,34 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         init();
-        try {
-            mSearchActivityPresenter.load("");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        mSearchViewModel = ViewModelProviders.of(this, mSearchViewModelFactory)
+                .get(SearchViewModel.class);
+
+        mSearchViewModel.getSearchResults().observe(this, (resource) -> {
+
+            switch (resource.status){
+                case LOADING:
+                    onSearchResultsLoading();
+                    break;
+                case SUCCESS:
+                    onSearchResultsLoaded(resource.data);
+                    break;
+                case ERROR:
+                    onSearchResultsFailed();
+                    break;
+            }
+        });
     }
 
-    private void init(){
+    private void init() {
 
-        mSearchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    searchResults();
-                    return true;
-                }
-                return false;
+        mSearchEditText.setOnEditorActionListener((textView, actionId, keyEvent) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                searchResults();
+                return true;
             }
+            return false;
         });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -93,14 +105,14 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
     }
 
     @OnClick(R.id.search_btn)
-    public void searchResults(){
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+    public void searchResults() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(mSearchBtn.getWindowToken(), 0);
-        if(TextUtils.isEmpty(mSearchEditText.getText().toString())){
+        if (TextUtils.isEmpty(mSearchEditText.getText().toString())) {
             Toast.makeText(this, "Please enter some text", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             try {
-                mSearchActivityPresenter.load(mSearchEditText.getText().toString());
+                mSearchViewModel.load(mSearchEditText.getText().toString());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -112,13 +124,11 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
         super.onResume();
     }
 
-    @Override
     public void onSearchResultsLoading() {
         mLoadingContainer.setVisibility(View.VISIBLE);
         mNoResultsContainer.setVisibility(View.GONE);
     }
 
-    @Override
     public void onSearchResultsLoaded(List<SearchResult> searchResults) {
         mLoadingContainer.setVisibility(View.GONE);
         if(searchResults == null || searchResults.isEmpty()){
@@ -129,7 +139,6 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
         mSearchResultsAdapter.setSearchResultsList(searchResults);
     }
 
-    @Override
     public void onSearchResultsFailed() {
         mLoadingContainer.setVisibility(View.GONE);
         if(mSearchResultsAdapter.getSearchResultsList() == null || mSearchResultsAdapter.getSearchResultsList().isEmpty()){
@@ -153,8 +162,6 @@ public class SearchActivity extends AppCompatActivity implements SearchPresenter
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mSearchActivityPresenter.destroy();
-        mSearchActivityPresenter = null;
         mSearchResultsAdapter = null;
     }
 

@@ -10,6 +10,6 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class ActivityProvider {
 
     @ContributesAndroidInjector(modules = SearchActivityModule.class)
-    abstract SearchActivity bindSearchActivity();
+    abstract SearchActivity bindNewSearchActivity();
 
 }

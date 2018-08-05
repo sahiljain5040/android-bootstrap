@@ -1,9 +1,13 @@
-package com.demo.search.presenter.impl;
+package com.demo.search.viewmodel;
 
-import com.demo.domain.search.interactors.GetSearchRestaurantUseCase;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
+
+import com.demo.base.model.Resource;
 import com.demo.domain.base.interactors.UseCaseObserver;
+import com.demo.domain.search.interactors.GetSearchRestaurantUseCase;
 import com.demo.domain.search.model.SearchResult;
-import com.demo.search.presenter.SearchPresenter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,32 +15,27 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-/**
- * Created by sahil on 3/17/18.
- */
-public class SearchPresenterImpl implements SearchPresenter{
+public class SearchViewModel extends ViewModel{
 
     private GetSearchRestaurantUseCase mSearchRestaurantUseCase;
-    private SearchPresenter.View mView;
+    private MutableLiveData<Resource<List<SearchResult>>> mSearchResults;
 
     @Inject
-    public SearchPresenterImpl(View view, GetSearchRestaurantUseCase restaurantInteractor) {
-        super();
-        this.mView = view;
-        this.mSearchRestaurantUseCase = restaurantInteractor;
+    public SearchViewModel(GetSearchRestaurantUseCase getSearchRestaurantUseCase){
+        mSearchRestaurantUseCase = getSearchRestaurantUseCase;
     }
 
-    @Override
-    public void load(String queryString) throws Exception {
-
-        if(mView != null){
-            mView.onSearchResultsLoading();
-        }else{
-            throw new Exception("setView() not called Before calling load()");
+    public LiveData<Resource<List<SearchResult>>> getSearchResults(){
+        if(mSearchResults == null){
+            mSearchResults = new MutableLiveData<>();
         }
+        return mSearchResults;
+    }
 
+    public void load(String queryString){
         mSearchRestaurantUseCase.dispose();
         mSearchRestaurantUseCase.execute(getSearchListObserver(), getQueryParams(queryString));
+        mSearchResults.setValue(Resource.loading(null));
     }
 
     private UseCaseObserver<List<SearchResult>> getSearchListObserver(){
@@ -45,41 +44,27 @@ public class SearchPresenterImpl implements SearchPresenter{
             @Override
             public void onNext(List<SearchResult> searchResults) {
                 super.onNext(searchResults);
-                mView.onSearchResultsLoaded(searchResults);
+                mSearchResults.setValue(Resource.success(searchResults));
             }
 
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
                 e.printStackTrace();
-                mView.onSearchResultsFailed();
+                mSearchResults.setValue(Resource.error(e.getMessage(), null));
             }
         };
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void stop() {
-
-    }
-
-    @Override
-    public void destroy() {
-        mView = null;
-        mSearchRestaurantUseCase.dispose();
     }
 
     private Map<String, String> getQueryParams(String searchQuery) {
         HashMap<String, String> queryParams = new HashMap<String, String>();
         queryParams.put("q", searchQuery);
         return queryParams;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        mSearchRestaurantUseCase.dispose();
     }
 }

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.demo.domain.search.model.SearchResult;
-import com.demo.search.presenter.SearchPresenter;
+import com.demo.search.viewmodel.factory.SearchViewModelFactory;
 
 import java.util.List;
 
@@ -19,10 +19,10 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
-public class TestFragment extends Fragment implements SearchPresenter.View{
+public class TestFragment extends Fragment {
 
     @Inject
-    SearchPresenter mSearchPresenter;
+    SearchViewModelFactory mSearchViewModelFactory;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class TestFragment extends Fragment implements SearchPresenter.View{
     @Override
     public void onAttach(Context context) {
         AndroidSupportInjection.inject(this);
-        Log.d("Sahil", " onAttach(): " + mSearchPresenter);
+        Log.d("Sahil", " onAttach(): " + mSearchViewModelFactory);
         super.onAttach(context);
     }
 
@@ -62,17 +62,14 @@ public class TestFragment extends Fragment implements SearchPresenter.View{
         super.onDestroy();
     }
 
-    @Override
     public void onSearchResultsLoading() {
 
     }
 
-    @Override
     public void onSearchResultsLoaded(List<SearchResult> searchResults) {
 
     }
 
-    @Override
     public void onSearchResultsFailed() {
 
     }

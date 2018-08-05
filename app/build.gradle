@@ -48,6 +48,8 @@ dependencies {
     compile project(path: ':domain')
     compile project(path: ':data')
 
+    implementation "android.arch.lifecycle:extensions:${rootProject.ext.lifecycleVersion}"
+
     compile "com.android.support:appcompat-v7:${rootProject.ext.androidAppCompatVersion}"
     compile "com.android.support:recyclerview-v7:${rootProject.ext.androidAppCompatVersion}"
     compile "com.android.support.constraint:constraint-layout:${rootProject.ext.androidConstraintLayoutVersion}"
