@@ -17,6 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.demo.androidbootstrap.R;
+import com.demo.androidbootstrap.databinding.SearchActivityBinding;
+import com.demo.base.model.Resource;
+import com.demo.base.util.DataBindingUtil;
 import com.demo.domain.search.model.SearchResult;
 import com.demo.search.adapter.SearchResultsAdapter;
 import com.demo.search.fragment.TestFragment;
@@ -43,10 +46,6 @@ public class SearchActivity extends AppCompatActivity implements HasSupportFragm
     EditText mSearchEditText;
     @BindView(R.id.search_btn)
     Button mSearchBtn;
-    @BindView(R.id.loading_container)
-    LinearLayout mLoadingContainer;
-    @BindView(R.id.no_results_container)
-    LinearLayout mNoResultsContainer;
 
     @Inject
     DispatchingAndroidInjector<Fragment> mDispatchingAndroidInjector;
@@ -62,7 +61,7 @@ public class SearchActivity extends AppCompatActivity implements HasSupportFragm
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_search);
+        SearchActivityBinding activityBinding = android.databinding.DataBindingUtil.setContentView(this, R.layout.search_activity);
         ButterKnife.bind(this);
         init();
 
@@ -71,16 +70,12 @@ public class SearchActivity extends AppCompatActivity implements HasSupportFragm
 
         mSearchViewModel.getSearchResults().observe(this, (resource) -> {
 
-            switch (resource.status){
-                case LOADING:
-                    onSearchResultsLoading();
-                    break;
-                case SUCCESS:
-                    onSearchResultsLoaded(resource.data);
-                    break;
-                case ERROR:
-                    onSearchResultsFailed();
-                    break;
+            activityBinding.setResource(resource);
+            activityBinding.setLoadedResults(mSearchResultsAdapter == null ? null : mSearchResultsAdapter.getSearchResultsList());
+            if(resource.status == Resource.Status.SUCCESS){
+                mSearchResultsAdapter.setSearchResultsList(resource.data);
+            }else if(resource.status == Resource.Status.ERROR){
+                Toast.makeText(this, "Sorry, Unable to get results", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -122,31 +117,6 @@ public class SearchActivity extends AppCompatActivity implements HasSupportFragm
     @Override
     protected void onResume() {
         super.onResume();
-    }
-
-    public void onSearchResultsLoading() {
-        mLoadingContainer.setVisibility(View.VISIBLE);
-        mNoResultsContainer.setVisibility(View.GONE);
-    }
-
-    public void onSearchResultsLoaded(List<SearchResult> searchResults) {
-        mLoadingContainer.setVisibility(View.GONE);
-        if(searchResults == null || searchResults.isEmpty()){
-            mNoResultsContainer.setVisibility(View.VISIBLE);
-        }else{
-            mNoResultsContainer.setVisibility(View.GONE);
-        }
-        mSearchResultsAdapter.setSearchResultsList(searchResults);
-    }
-
-    public void onSearchResultsFailed() {
-        mLoadingContainer.setVisibility(View.GONE);
-        if(mSearchResultsAdapter.getSearchResultsList() == null || mSearchResultsAdapter.getSearchResultsList().isEmpty()){
-            mNoResultsContainer.setVisibility(View.VISIBLE);
-        }else{
-            mNoResultsContainer.setVisibility(View.GONE);
-        }
-        Toast.makeText(this, "Sorry, Unable to get results", Toast.LENGTH_SHORT).show();
     }
 
     @Override

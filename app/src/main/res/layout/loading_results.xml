@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/loading_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:clickable="true"
-    android:background="@color/lightGrey"
-    android:visibility="gone">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <data>
+        <import type="com.demo.base.model.Resource.Status" />
+        <import type="android.view.View" />
+        <variable
+            name="resource" type="com.demo.base.model.Resource" />
+    </data>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/loading_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@color/lightGrey"
+        android:visibility="@{resource.status == Status.LOADING ? View.VISIBLE : View.GONE, default = gone}">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</layout>

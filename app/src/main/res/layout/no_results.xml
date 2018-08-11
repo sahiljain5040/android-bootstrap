@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/no_results_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:clickable="true"
-    android:background="@android:color/white"
-    android:visibility="visible">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No Results to display"
-        android:textSize="20sp"/>
+    <data>
+        <import type="com.demo.base.model.Resource.Status" />
+        <import type="android.view.View" />
+        <import type="java.util.List" />
+        <variable
+            name="resource" type="com.demo.base.model.Resource" />
+        <variable
+            name="loadedResults" type="java.util.List" />
+    </data>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/no_results_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="@android:color/white"
+        android:visibility="@{resource.status == Status.LOADING ? View.GONE : (resource.status == Status.SUCCESS ? (((List)resource.data).isEmpty() ? View.VISIBLE : View.GONE): (((List)loadedResults).isEmpty() ? View.VISIBLE : View.GONE))}">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Results to display"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+</layout>
