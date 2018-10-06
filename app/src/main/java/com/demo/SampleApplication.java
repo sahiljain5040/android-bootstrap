@@ -17,7 +17,7 @@ public class SampleApplication extends BootstrapApplication {
 
     @Override
     public NetworkModule getNetworkModule() {
-        NetworkModule networkModule = new NetworkModule(Constants.BASE_URL);
+        NetworkModule networkModule = new NetworkModule(Constants.getBASE_URL());
         return networkModule;
     }
 }

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
@@ -85,4 +86,8 @@ dependencies {
     testCompile "junit:junit:${rootProject.ext.junitVersion}"
     // Optional -- Mockito framework
     testCompile "org.mockito:mockito-core:${rootProject.ext.mockitoVersion}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
