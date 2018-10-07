@@ -20,7 +20,7 @@
             android:id="@+id/header_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{header.name}"
+            android:text="@{header.name.get()}"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

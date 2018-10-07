@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:onClick="@{(view) -> searchResultHolder.onClick(view, searchResult)}"
-        android:contentDescription="@{searchResult.restaurant.name}">
+        android:contentDescription="@{searchResult.restaurant.get().name}">
 
         <ImageView
             android:id="@+id/image"
@@ -23,7 +23,7 @@
             android:layout_height="80dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:image_url = "@{searchResult.restaurant.thumb}"
+            app:image_url = "@{searchResult.restaurant.get().thumb}"
             app:place_holder = "@{@drawable/not_available}"/>
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="@{searchResult.restaurant.name}"
+            android:text="@{searchResult.restaurant.get().name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toTopOf="@+id/image" />
@@ -48,11 +48,11 @@
             android:paddingBottom="4dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:text="@{searchResult.restaurant.userRating.aggregateRating}"
+            android:text="@{searchResult.restaurant.get().userRating.aggregateRating}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name"
             android:textColor="@android:color/white"
-            android:background="@{Color.parseColor(`#` + searchResult.restaurant.userRating.ratingColor)}"
+            android:background="@{Color.parseColor(`#` + searchResult.restaurant.get().userRating.ratingColor)}"
             tools:text="4.7"/>
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:text="@{`Avg cost for two: ` + String.valueOf(searchResult.restaurant.averageCostForTwo)}"
+            android:text="@{`Avg cost for two: ` + String.valueOf(searchResult.restaurant.get().averageCostForTwo)}"
             app:layout_constraintBaseline_toBaselineOf="@+id/rating"
             app:layout_constraintEnd_toStartOf="@+id/rating"
             app:layout_constraintStart_toEndOf="@+id/image" />
@@ -75,7 +75,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{searchResult.restaurant.cuisines}"
+            android:text="@{searchResult.restaurant.get().cuisines}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toBottomOf="@+id/rating" />

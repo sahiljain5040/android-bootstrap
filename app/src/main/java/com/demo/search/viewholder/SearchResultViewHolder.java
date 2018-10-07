@@ -31,7 +31,7 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void onClick(View view, SearchResult searchResult) {
-        Toast.makeText(view.getContext(), searchResult.getRestaurant().getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), searchResult.getRestaurant().get().getName(), Toast.LENGTH_SHORT).show();
     }
 
     public ViewDataBinding getBinding() {
